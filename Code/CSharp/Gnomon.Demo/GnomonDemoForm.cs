@@ -28,6 +28,7 @@ namespace Gnomon.Demo
 
 			this._ctrlGregorian.Months	= MonthNames.Names[Library.Enumerations.CalendarSystem.Gregorian];
 			this._ctrlJulian.Months		= MonthNames.Names[Library.Enumerations.CalendarSystem.Julian];
+			this._ctrlIslamic.Months	= MonthNames.Names[Library.Enumerations.CalendarSystem.Islamic];
 
 			this._timerSecond.Interval	= 1000;
 			this._timerSecond.Tick		+= this.OnSecondTick;
@@ -37,28 +38,32 @@ namespace Gnomon.Demo
 		private void OnSecondTick(object sender, EventArgs e)
 		{
 			DateTime dateTimeNow				= DateTime.Now;
-			GregorianDate gregorianDate			= new GregorianDate(dateTimeNow);
-			double rataDie						= gregorianDate.ToMoment();
+			GregorianDate gregorian				= new GregorianDate(dateTimeNow);
+			double rataDie						= gregorian.ToMoment();
 
 			this._lblRataDie.Text				= rataDie.ToString();
 
-			double julianDays					= gregorianDate.JulianDays;
+			double julianDays					= gregorian.JulianDays;
 
 			this._lblJulianDays.Text			= julianDays.ToString();
 
-			double modifiedJulianDays			= gregorianDate.ModifiedJulianDays;
+			double modifiedJulianDays			= gregorian.ModifiedJulianDays;
 
 			this._lblModifiedJulianDays.Text	= modifiedJulianDays.ToString();
 
 			this._lblLocalTime.Text				= DateTime.Now.ToString("HH:mm:ss");
 			this._lblUTCTime.Text				= DateTime.UtcNow.ToString("HH:mm:ss");
 
-			this._ctrlGregorian.TriadicDate		= gregorianDate;
+			this._ctrlGregorian.TriadicDate		= gregorian;
 
-			JulianDate julianDate				= new JulianDate();
-			julianDate.FromMoment(rataDie);
+			JulianDate julian					= new JulianDate();
+			julian.FromMoment(rataDie);
 
-			this._ctrlJulian.TriadicDate		= julianDate;
+			this._ctrlJulian.TriadicDate		= julian;
+
+			IslamicDate islamic					= new IslamicDate();
+			islamic.FromMoment(rataDie);
+			this._ctrlIslamic.TriadicDate		= islamic;
 		}
 	}
 }

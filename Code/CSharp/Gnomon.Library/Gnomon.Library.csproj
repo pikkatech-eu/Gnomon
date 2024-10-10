@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="Gui\Interfaces\ITriadicDateControl.cs" />
     <Compile Include="IDate.cs" />
+    <Compile Include="IslamicDate.cs" />
     <Compile Include="JulianDate.cs" />
     <Compile Include="MonthNames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
