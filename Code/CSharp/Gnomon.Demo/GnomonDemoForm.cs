@@ -26,12 +26,14 @@ namespace Gnomon.Demo
 		{
 			InitializeComponent();
 
-			this._ctrlGregorian.Months	= MonthNames.Names[Library.Enumerations.CalendarSystem.Gregorian];
-			this._ctrlJulian.Months		= MonthNames.Names[Library.Enumerations.CalendarSystem.Julian];
-			this._ctrlIslamic.Months	= MonthNames.Names[Library.Enumerations.CalendarSystem.Islamic];
+			this._ctrlGregorian.Months		= MonthNames.Names[Library.Enumerations.CalendarSystem.Gregorian];
+			this._ctrlJulian.Months			= MonthNames.Names[Library.Enumerations.CalendarSystem.Julian];
+			this._ctrlIslamic.Months		= MonthNames.Names[Library.Enumerations.CalendarSystem.Islamic];
+			this._ctrlHebrew.Months			= MonthNames.Names[Library.Enumerations.CalendarSystem.Hebrew];
+			this._ctrlWesternBahai.Months	= MonthNames.Names[Library.Enumerations.CalendarSystem.WesternBahai];
 
-			this._timerSecond.Interval	= 1000;
-			this._timerSecond.Tick		+= this.OnSecondTick;
+			this._timerSecond.Interval		= 1000;
+			this._timerSecond.Tick			+= this.OnSecondTick;
 			this._timerSecond.Start();
 		}
 
@@ -64,6 +66,14 @@ namespace Gnomon.Demo
 			IslamicDate islamic					= new IslamicDate();
 			islamic.FromMoment(rataDie);
 			this._ctrlIslamic.TriadicDate		= islamic;
+
+			HebrewDate hebrew					= new HebrewDate();
+			hebrew.FromMoment(rataDie);
+			this._ctrlHebrew.TriadicDate		= hebrew;
+
+			WesternBahaiDate western			= new WesternBahaiDate();
+			western.FromMoment(rataDie);
+			this._ctrlWesternBahai.TriadicDate	= western;
 		}
 	}
 }

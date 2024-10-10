@@ -13,17 +13,20 @@ namespace Gnomon.Library.Tools
 	public static class ChronoTools
 	{
 		#region Constants
+		public const double MEAN_TROPICAL_YEAR = 365.242189;
+
 		public const double JULIAN_DAY_EPOCH	= -1721424.5;
 		public const double MJD_EPOCH			= 678576;
 		public const double JULIAN_EPOCH		= -1;
 		public const double HEBREW_EPOCH		= -1373427;
 		public const double ISLAMIC_EPOCH		= 227015;
 		public const double BAHAI_EPOCH			= 673222.0;	// R.D. for March 21, 1844
+		public const double PERSIAN_EPOCH		= 226896;
 		#endregion
 
 		#region Mathematics
 		/// <summary>
-		/// RDU (1.17): The The	remainder, or modulus, of float numbers.
+		/// RDU (1.17): The	remainder, or modulus, of float numbers.
 		/// </summary>
 		/// <param name="x">The first operand</param>
 		/// <param name="y">The second operand</param>
@@ -32,6 +35,17 @@ namespace Gnomon.Library.Tools
 		public static double Fmod(double x, double y)
 		{
 			return x - y * Math.Floor(x / y);
+		}
+
+		/// <summary>
+		/// The Fmod function for integer arguments.
+		/// </summary>
+		/// <param name="x"></param>
+		/// <param name="y"></param>
+		/// <returns></returns>
+		public static double Fmod(int x, int y)
+		{
+			return Fmod((double)x, (double)y);
 		}
 		#endregion
 

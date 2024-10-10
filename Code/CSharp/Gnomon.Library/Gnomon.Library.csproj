@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractDate.cs" />
+    <Compile Include="CopticDate.cs" />
     <Compile Include="Enumerations\CalendarSystem.cs" />
     <Compile Include="GregorianDate.cs" />
     <Compile Include="Gui\Controls\TriadicDateControl.cs">
@@ -53,13 +54,16 @@
       <DependentUpon>TriadicDateControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Gui\Interfaces\ITriadicDateControl.cs" />
+    <Compile Include="HebrewDate.cs" />
     <Compile Include="IDate.cs" />
     <Compile Include="IslamicDate.cs" />
     <Compile Include="JulianDate.cs" />
     <Compile Include="MonthNames.cs" />
+    <Compile Include="PersianDate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TriadicDate.cs" />
     <Compile Include="Tools\ChronoTools.cs" />
+    <Compile Include="WesternBahaiDate.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
