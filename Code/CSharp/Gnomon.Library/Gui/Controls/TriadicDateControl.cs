@@ -132,9 +132,6 @@ namespace Bonsai.Chronology.Gui.Controls
 		{
 			InitializeComponent();
 
-			//this._cxCalendarSystem.DataSource = Enum.GetValues(typeof(CalendarSystem.Kind));
-			//this._cxCalendarSystem.SelectedItem = CalendarSystem.Kind.Gregorian;
-
 			// No validation here so far, even for Gregorian dates
 			this._cxDay.Items.Clear();
 			this._cxDay.Items.Add("Unknown");
@@ -154,8 +151,6 @@ namespace Bonsai.Chronology.Gui.Controls
 				try
 				{
 					TriadicDate date	= new TriadicDate();
-					//date.IsExact		= this._cbIsExact.Checked;
-					//date.CalendarKind	= (CalendarSystem.Kind)this._cxCalendarSystem.SelectedItem;
 					date.Year			= Int32.Parse(this._txYear.Text);
 					date.Month			= this._cxMonth.SelectedIndex;
 					date.Day			= this._cxDay.SelectedIndex;
@@ -170,20 +165,12 @@ namespace Bonsai.Chronology.Gui.Controls
 
 			set
 			{
-				throw new NotImplementedException();
-			}
-		}
-
-		private void OnSelectedCalendarChanged(object sender, EventArgs e)
-		{
-			if (this._cxCalendarSystem.SelectedIndex >= 0 && this._cxCalendarSystem.SelectedIndex <= 5)
-			{
-				this._cxMonth.DataSource = MONTH_NAMES[this._cxCalendarSystem.SelectedIndex].ToArray();
-				this._cxMonth.SelectedIndex = 0;
-			}
-			else
-			{
-				this._cxMonth.Items.Clear();
+				if (value != null)
+				{
+					this._txYear.Text			= value.Year.ToString();
+					this._cxMonth.SelectedIndex	= value.Month;
+					this._cxDay.SelectedIndex	= (int)value.Day;
+				}
 			}
 		}
 

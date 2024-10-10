@@ -46,6 +46,8 @@ namespace Gnomon.Demo
 			double mjd = gd.ModifiedJulianDays;
 
 			this._lblModifiedJulianDays.Text = mjd.ToString();
+
+			this._ctrlGregorian.TriadicDate = gd;
 		}
 	}
 }
