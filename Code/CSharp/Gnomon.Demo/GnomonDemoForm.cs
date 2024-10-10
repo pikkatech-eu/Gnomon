@@ -35,21 +35,26 @@ namespace Gnomon.Demo
 
 		private void OnSecondTick(object sender, EventArgs e)
 		{
-			DateTime dt = DateTime.Now;
-			GregorianDate gd = new GregorianDate(dt);
-			double rd = gd.ToMoment();
+			DateTime dateTimeNow				= DateTime.Now;
+			GregorianDate gregorianDate			= new GregorianDate(dateTimeNow);
+			double rataDie						= gregorianDate.ToMoment();
 
-			this._lblRataDie.Text = rd.ToString();
+			this._lblRataDie.Text				= rataDie.ToString();
 
-			double jd = gd.JulianDays;
+			double julianDays					= gregorianDate.JulianDays;
 
-			this._lblJulianDays.Text = jd.ToString();
+			this._lblJulianDays.Text			= julianDays.ToString();
 
-			double mjd = gd.ModifiedJulianDays;
+			double modifiedJulianDays			= gregorianDate.ModifiedJulianDays;
 
-			this._lblModifiedJulianDays.Text = mjd.ToString();
+			this._lblModifiedJulianDays.Text	= modifiedJulianDays.ToString();
 
-			this._ctrlGregorian.TriadicDate = gd;
+			this._lblLocalTime.Text				= DateTime.Now.ToString("HH:mm:ss");
+			this._lblUTCTime.Text				= DateTime.UtcNow.ToString("HH:mm:ss");
+
+			this._ctrlGregorian.TriadicDate		= gregorianDate;
+
+			
 		}
 	}
 }

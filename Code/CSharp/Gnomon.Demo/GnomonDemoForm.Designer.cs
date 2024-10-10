@@ -54,8 +54,12 @@
 			this._btLockUnlock = new System.Windows.Forms.Button();
 			this._panLocalityControl = new System.Windows.Forms.Panel();
 			this._lblJulianDays = new System.Windows.Forms.Label();
-			this._timerSecond = new System.Windows.Forms.Timer(this.components);
 			this._ctrlGregorian = new Bonsai.Chronology.Gui.Controls.TriadicDateControl();
+			this._timerSecond = new System.Windows.Forms.Timer(this.components);
+			this.label12 = new System.Windows.Forms.Label();
+			this.label13 = new System.Windows.Forms.Label();
+			this._lblLocalTime = new System.Windows.Forms.Label();
+			this._lblUTCTime = new System.Windows.Forms.Label();
 			this._tlpGnomon.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -66,36 +70,42 @@
 			this._tlpGnomon.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this._tlpGnomon.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this._tlpGnomon.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
-			this._tlpGnomon.Controls.Add(this.panel7, 1, 11);
-			this._tlpGnomon.Controls.Add(this.panel6, 1, 10);
-			this._tlpGnomon.Controls.Add(this.panel5, 1, 9);
-			this._tlpGnomon.Controls.Add(this.panel4, 1, 8);
-			this._tlpGnomon.Controls.Add(this.panel3, 1, 7);
-			this._tlpGnomon.Controls.Add(this.panel2, 1, 6);
-			this._tlpGnomon.Controls.Add(this.label11, 0, 11);
-			this._tlpGnomon.Controls.Add(this.label10, 0, 10);
-			this._tlpGnomon.Controls.Add(this.label9, 0, 9);
-			this._tlpGnomon.Controls.Add(this.label8, 0, 8);
-			this._tlpGnomon.Controls.Add(this.label7, 0, 7);
-			this._tlpGnomon.Controls.Add(this.label6, 0, 6);
-			this._tlpGnomon.Controls.Add(this.label5, 0, 5);
+			this._tlpGnomon.Controls.Add(this._lblUTCTime, 1, 5);
+			this._tlpGnomon.Controls.Add(this._lblLocalTime, 1, 4);
+			this._tlpGnomon.Controls.Add(this.label13, 0, 5);
+			this._tlpGnomon.Controls.Add(this.label12, 0, 4);
+			this._tlpGnomon.Controls.Add(this.panel7, 1, 13);
+			this._tlpGnomon.Controls.Add(this.panel6, 1, 12);
+			this._tlpGnomon.Controls.Add(this.panel5, 1, 11);
+			this._tlpGnomon.Controls.Add(this.panel4, 1, 10);
+			this._tlpGnomon.Controls.Add(this.panel3, 1, 9);
+			this._tlpGnomon.Controls.Add(this.panel2, 1, 8);
+			this._tlpGnomon.Controls.Add(this.label11, 0, 13);
+			this._tlpGnomon.Controls.Add(this.label10, 0, 12);
+			this._tlpGnomon.Controls.Add(this.label9, 0, 11);
+			this._tlpGnomon.Controls.Add(this.label8, 0, 10);
+			this._tlpGnomon.Controls.Add(this.label7, 0, 9);
+			this._tlpGnomon.Controls.Add(this.label6, 0, 8);
+			this._tlpGnomon.Controls.Add(this.label5, 0, 7);
 			this._tlpGnomon.Controls.Add(this._lblRataDie, 1, 3);
 			this._tlpGnomon.Controls.Add(this._lblModifiedJulianDays, 1, 2);
 			this._tlpGnomon.Controls.Add(this._btManageLocality, 3, 0);
-			this._tlpGnomon.Controls.Add(this._btRecalculate, 2, 4);
+			this._tlpGnomon.Controls.Add(this._btRecalculate, 2, 6);
 			this._tlpGnomon.Controls.Add(this.label4, 0, 3);
 			this._tlpGnomon.Controls.Add(this.label3, 0, 2);
 			this._tlpGnomon.Controls.Add(this.label2, 0, 1);
 			this._tlpGnomon.Controls.Add(this.label1, 0, 0);
-			this._tlpGnomon.Controls.Add(this._btLockUnlock, 1, 4);
+			this._tlpGnomon.Controls.Add(this._btLockUnlock, 1, 6);
 			this._tlpGnomon.Controls.Add(this._panLocalityControl, 1, 0);
 			this._tlpGnomon.Controls.Add(this._lblJulianDays, 1, 1);
-			this._tlpGnomon.Controls.Add(this._ctrlGregorian, 1, 5);
+			this._tlpGnomon.Controls.Add(this._ctrlGregorian, 1, 7);
 			this._tlpGnomon.Dock = System.Windows.Forms.DockStyle.Fill;
 			this._tlpGnomon.Location = new System.Drawing.Point(0, 0);
 			this._tlpGnomon.Name = "_tlpGnomon";
-			this._tlpGnomon.RowCount = 13;
+			this._tlpGnomon.RowCount = 15;
 			this._tlpGnomon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+			this._tlpGnomon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+			this._tlpGnomon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
 			this._tlpGnomon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
 			this._tlpGnomon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
 			this._tlpGnomon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
@@ -116,7 +126,7 @@
 			this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(48)))), ((int)(((byte)(18)))));
 			this._tlpGnomon.SetColumnSpan(this.panel7, 2);
 			this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel7.Location = new System.Drawing.Point(205, 347);
+			this.panel7.Location = new System.Drawing.Point(205, 411);
 			this.panel7.Name = "panel7";
 			this.panel7.Size = new System.Drawing.Size(662, 22);
 			this.panel7.TabIndex = 24;
@@ -126,7 +136,7 @@
 			this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(48)))), ((int)(((byte)(18)))));
 			this._tlpGnomon.SetColumnSpan(this.panel6, 2);
 			this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel6.Location = new System.Drawing.Point(205, 319);
+			this.panel6.Location = new System.Drawing.Point(205, 383);
 			this.panel6.Name = "panel6";
 			this.panel6.Size = new System.Drawing.Size(662, 22);
 			this.panel6.TabIndex = 23;
@@ -136,7 +146,7 @@
 			this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(48)))), ((int)(((byte)(18)))));
 			this._tlpGnomon.SetColumnSpan(this.panel5, 2);
 			this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel5.Location = new System.Drawing.Point(205, 291);
+			this.panel5.Location = new System.Drawing.Point(205, 355);
 			this.panel5.Name = "panel5";
 			this.panel5.Size = new System.Drawing.Size(662, 22);
 			this.panel5.TabIndex = 22;
@@ -146,7 +156,7 @@
 			this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(48)))), ((int)(((byte)(18)))));
 			this._tlpGnomon.SetColumnSpan(this.panel4, 2);
 			this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel4.Location = new System.Drawing.Point(205, 263);
+			this.panel4.Location = new System.Drawing.Point(205, 327);
 			this.panel4.Name = "panel4";
 			this.panel4.Size = new System.Drawing.Size(662, 22);
 			this.panel4.TabIndex = 21;
@@ -156,7 +166,7 @@
 			this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(48)))), ((int)(((byte)(18)))));
 			this._tlpGnomon.SetColumnSpan(this.panel3, 2);
 			this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel3.Location = new System.Drawing.Point(205, 235);
+			this.panel3.Location = new System.Drawing.Point(205, 299);
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(662, 22);
 			this.panel3.TabIndex = 20;
@@ -166,7 +176,7 @@
 			this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(48)))), ((int)(((byte)(18)))));
 			this._tlpGnomon.SetColumnSpan(this.panel2, 2);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel2.Location = new System.Drawing.Point(205, 207);
+			this.panel2.Location = new System.Drawing.Point(205, 271);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(662, 22);
 			this.panel2.TabIndex = 19;
@@ -176,7 +186,7 @@
 			this.label11.AutoSize = true;
 			this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label11.Font = new System.Drawing.Font("Consolas", 12F);
-			this.label11.Location = new System.Drawing.Point(3, 344);
+			this.label11.Location = new System.Drawing.Point(3, 408);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(196, 28);
 			this.label11.TabIndex = 17;
@@ -188,7 +198,7 @@
 			this.label10.AutoSize = true;
 			this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label10.Font = new System.Drawing.Font("Consolas", 12F);
-			this.label10.Location = new System.Drawing.Point(3, 316);
+			this.label10.Location = new System.Drawing.Point(3, 380);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(196, 28);
 			this.label10.TabIndex = 16;
@@ -200,7 +210,7 @@
 			this.label9.AutoSize = true;
 			this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label9.Font = new System.Drawing.Font("Consolas", 12F);
-			this.label9.Location = new System.Drawing.Point(3, 288);
+			this.label9.Location = new System.Drawing.Point(3, 352);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(196, 28);
 			this.label9.TabIndex = 15;
@@ -212,7 +222,7 @@
 			this.label8.AutoSize = true;
 			this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label8.Font = new System.Drawing.Font("Consolas", 12F);
-			this.label8.Location = new System.Drawing.Point(3, 260);
+			this.label8.Location = new System.Drawing.Point(3, 324);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(196, 28);
 			this.label8.TabIndex = 14;
@@ -224,7 +234,7 @@
 			this.label7.AutoSize = true;
 			this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label7.Font = new System.Drawing.Font("Consolas", 12F);
-			this.label7.Location = new System.Drawing.Point(3, 232);
+			this.label7.Location = new System.Drawing.Point(3, 296);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(196, 28);
 			this.label7.TabIndex = 13;
@@ -236,7 +246,7 @@
 			this.label6.AutoSize = true;
 			this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label6.Font = new System.Drawing.Font("Consolas", 12F);
-			this.label6.Location = new System.Drawing.Point(3, 204);
+			this.label6.Location = new System.Drawing.Point(3, 268);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(196, 28);
 			this.label6.TabIndex = 12;
@@ -248,7 +258,7 @@
 			this.label5.AutoSize = true;
 			this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label5.Font = new System.Drawing.Font("Consolas", 12F);
-			this.label5.Location = new System.Drawing.Point(3, 176);
+			this.label5.Location = new System.Drawing.Point(3, 240);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(196, 28);
 			this.label5.TabIndex = 11;
@@ -296,7 +306,7 @@
 			// 
 			this._btRecalculate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
 			this._btRecalculate.Dock = System.Windows.Forms.DockStyle.Fill;
-			this._btRecalculate.Location = new System.Drawing.Point(539, 139);
+			this._btRecalculate.Location = new System.Drawing.Point(539, 203);
 			this._btRecalculate.Name = "_btRecalculate";
 			this._btRecalculate.Size = new System.Drawing.Size(328, 34);
 			this._btRecalculate.TabIndex = 5;
@@ -355,7 +365,7 @@
 			// 
 			this._btLockUnlock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
 			this._btLockUnlock.Dock = System.Windows.Forms.DockStyle.Fill;
-			this._btLockUnlock.Location = new System.Drawing.Point(205, 139);
+			this._btLockUnlock.Location = new System.Drawing.Point(205, 203);
 			this._btLockUnlock.Name = "_btLockUnlock";
 			this._btLockUnlock.Size = new System.Drawing.Size(328, 34);
 			this._btLockUnlock.TabIndex = 4;
@@ -388,16 +398,100 @@
 			// _ctrlGregorian
 			// 
 			this._tlpGnomon.SetColumnSpan(this._ctrlGregorian, 2);
+			this._ctrlGregorian.Days = new string[] {
+        "Unknown",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31"};
 			this._ctrlGregorian.Dock = System.Windows.Forms.DockStyle.Fill;
 			this._ctrlGregorian.Font = new System.Drawing.Font("Consolas", 10F);
-			this._ctrlGregorian.Location = new System.Drawing.Point(202, 176);
+			this._ctrlGregorian.Location = new System.Drawing.Point(202, 240);
 			this._ctrlGregorian.Margin = new System.Windows.Forms.Padding(0);
+			this._ctrlGregorian.Months = new string[0];
 			this._ctrlGregorian.Name = "_ctrlGregorian";
 			this._ctrlGregorian.Size = new System.Drawing.Size(668, 28);
 			this._ctrlGregorian.TabIndex = 25;
 			this._ctrlGregorian.TriadicDate = null;
 			// 
-			// Form1
+			// label12
+			// 
+			this.label12.AutoSize = true;
+			this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.label12.Font = new System.Drawing.Font("Consolas", 12F);
+			this.label12.Location = new System.Drawing.Point(3, 136);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(196, 32);
+			this.label12.TabIndex = 26;
+			this.label12.Text = "Local time";
+			this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// label13
+			// 
+			this.label13.AutoSize = true;
+			this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.label13.Font = new System.Drawing.Font("Consolas", 12F);
+			this.label13.Location = new System.Drawing.Point(3, 168);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(196, 32);
+			this.label13.TabIndex = 27;
+			this.label13.Text = "UTC time";
+			this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// _lblLocalTime
+			// 
+			this._lblLocalTime.AutoSize = true;
+			this._tlpGnomon.SetColumnSpan(this._lblLocalTime, 2);
+			this._lblLocalTime.Dock = System.Windows.Forms.DockStyle.Fill;
+			this._lblLocalTime.Location = new System.Drawing.Point(205, 136);
+			this._lblLocalTime.Name = "_lblLocalTime";
+			this._lblLocalTime.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this._lblLocalTime.Size = new System.Drawing.Size(662, 32);
+			this._lblLocalTime.TabIndex = 28;
+			this._lblLocalTime.Text = "...";
+			this._lblLocalTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// _lblUTCTime
+			// 
+			this._lblUTCTime.AutoSize = true;
+			this._tlpGnomon.SetColumnSpan(this._lblUTCTime, 2);
+			this._lblUTCTime.Dock = System.Windows.Forms.DockStyle.Fill;
+			this._lblUTCTime.Location = new System.Drawing.Point(205, 168);
+			this._lblUTCTime.Name = "_lblUTCTime";
+			this._lblUTCTime.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this._lblUTCTime.Size = new System.Drawing.Size(662, 32);
+			this._lblUTCTime.TabIndex = 29;
+			this._lblUTCTime.Text = "...";
+			this._lblUTCTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// GnomonDemoForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -407,7 +501,7 @@
 			this.Font = new System.Drawing.Font("Consolas", 10F);
 			this.ForeColor = System.Drawing.Color.White;
 			this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.Name = "Form1";
+			this.Name = "GnomonDemoForm";
 			this.Text = "Gnomon Demo 1.0";
 			this._tlpGnomon.ResumeLayout(false);
 			this._tlpGnomon.PerformLayout();
@@ -444,6 +538,10 @@
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.Timer _timerSecond;
 		private Bonsai.Chronology.Gui.Controls.TriadicDateControl _ctrlGregorian;
+		private System.Windows.Forms.Label label13;
+		private System.Windows.Forms.Label label12;
+		private System.Windows.Forms.Label _lblUTCTime;
+		private System.Windows.Forms.Label _lblLocalTime;
 	}
 }
 
