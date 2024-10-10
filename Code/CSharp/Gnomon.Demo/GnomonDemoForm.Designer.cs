@@ -35,7 +35,6 @@
 			this.panel5 = new System.Windows.Forms.Panel();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.panel3 = new System.Windows.Forms.Panel();
-			this.panel2 = new System.Windows.Forms.Panel();
 			this.label11 = new System.Windows.Forms.Label();
 			this.label10 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
@@ -54,12 +53,13 @@
 			this._btLockUnlock = new System.Windows.Forms.Button();
 			this._panLocalityControl = new System.Windows.Forms.Panel();
 			this._lblJulianDays = new System.Windows.Forms.Label();
-			this._ctrlGregorian = new Bonsai.Chronology.Gui.Controls.TriadicDateControl();
 			this._timerSecond = new System.Windows.Forms.Timer(this.components);
 			this.label12 = new System.Windows.Forms.Label();
 			this.label13 = new System.Windows.Forms.Label();
 			this._lblLocalTime = new System.Windows.Forms.Label();
 			this._lblUTCTime = new System.Windows.Forms.Label();
+			this._ctrlGregorian = new Bonsai.Chronology.Gui.Controls.TriadicDateControl();
+			this._ctrlJulian = new Bonsai.Chronology.Gui.Controls.TriadicDateControl();
 			this._tlpGnomon.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -70,6 +70,7 @@
 			this._tlpGnomon.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this._tlpGnomon.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this._tlpGnomon.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
+			this._tlpGnomon.Controls.Add(this._ctrlJulian, 1, 8);
 			this._tlpGnomon.Controls.Add(this._lblUTCTime, 1, 5);
 			this._tlpGnomon.Controls.Add(this._lblLocalTime, 1, 4);
 			this._tlpGnomon.Controls.Add(this.label13, 0, 5);
@@ -79,7 +80,6 @@
 			this._tlpGnomon.Controls.Add(this.panel5, 1, 11);
 			this._tlpGnomon.Controls.Add(this.panel4, 1, 10);
 			this._tlpGnomon.Controls.Add(this.panel3, 1, 9);
-			this._tlpGnomon.Controls.Add(this.panel2, 1, 8);
 			this._tlpGnomon.Controls.Add(this.label11, 0, 13);
 			this._tlpGnomon.Controls.Add(this.label10, 0, 12);
 			this._tlpGnomon.Controls.Add(this.label9, 0, 11);
@@ -170,16 +170,6 @@
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(662, 22);
 			this.panel3.TabIndex = 20;
-			// 
-			// panel2
-			// 
-			this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(48)))), ((int)(((byte)(18)))));
-			this._tlpGnomon.SetColumnSpan(this.panel2, 2);
-			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel2.Location = new System.Drawing.Point(205, 271);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(662, 22);
-			this.panel2.TabIndex = 19;
 			// 
 			// label11
 			// 
@@ -395,52 +385,6 @@
 			this._lblJulianDays.Text = "...";
 			this._lblJulianDays.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// _ctrlGregorian
-			// 
-			this._tlpGnomon.SetColumnSpan(this._ctrlGregorian, 2);
-			this._ctrlGregorian.Days = new string[] {
-        "Unknown",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "10",
-        "11",
-        "12",
-        "13",
-        "14",
-        "15",
-        "16",
-        "17",
-        "18",
-        "19",
-        "20",
-        "21",
-        "22",
-        "23",
-        "24",
-        "25",
-        "26",
-        "27",
-        "28",
-        "29",
-        "30",
-        "31"};
-			this._ctrlGregorian.Dock = System.Windows.Forms.DockStyle.Fill;
-			this._ctrlGregorian.Font = new System.Drawing.Font("Consolas", 10F);
-			this._ctrlGregorian.Location = new System.Drawing.Point(202, 240);
-			this._ctrlGregorian.Margin = new System.Windows.Forms.Padding(0);
-			this._ctrlGregorian.Months = new string[0];
-			this._ctrlGregorian.Name = "_ctrlGregorian";
-			this._ctrlGregorian.Size = new System.Drawing.Size(668, 28);
-			this._ctrlGregorian.TabIndex = 25;
-			this._ctrlGregorian.TriadicDate = null;
-			// 
 			// label12
 			// 
 			this.label12.AutoSize = true;
@@ -491,6 +435,98 @@
 			this._lblUTCTime.Text = "...";
 			this._lblUTCTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
+			// _ctrlGregorian
+			// 
+			this._tlpGnomon.SetColumnSpan(this._ctrlGregorian, 2);
+			this._ctrlGregorian.Days = new string[] {
+        "Unknown",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31"};
+			this._ctrlGregorian.Dock = System.Windows.Forms.DockStyle.Fill;
+			this._ctrlGregorian.Font = new System.Drawing.Font("Consolas", 10F);
+			this._ctrlGregorian.Location = new System.Drawing.Point(202, 240);
+			this._ctrlGregorian.Margin = new System.Windows.Forms.Padding(0);
+			this._ctrlGregorian.Months = new string[0];
+			this._ctrlGregorian.Name = "_ctrlGregorian";
+			this._ctrlGregorian.Size = new System.Drawing.Size(668, 28);
+			this._ctrlGregorian.TabIndex = 25;
+			this._ctrlGregorian.TriadicDate = null;
+			// 
+			// _ctrlJulian
+			// 
+			this._tlpGnomon.SetColumnSpan(this._ctrlJulian, 2);
+			this._ctrlJulian.Days = new string[] {
+        "Unknown",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31"};
+			this._ctrlJulian.Dock = System.Windows.Forms.DockStyle.Fill;
+			this._ctrlJulian.Font = new System.Drawing.Font("Consolas", 10F);
+			this._ctrlJulian.Location = new System.Drawing.Point(202, 268);
+			this._ctrlJulian.Margin = new System.Windows.Forms.Padding(0);
+			this._ctrlJulian.Months = new string[0];
+			this._ctrlJulian.Name = "_ctrlJulian";
+			this._ctrlJulian.Size = new System.Drawing.Size(668, 28);
+			this._ctrlJulian.TabIndex = 30;
+			this._ctrlJulian.TriadicDate = null;
+			// 
 			// GnomonDemoForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -532,7 +568,6 @@
 		private System.Windows.Forms.Panel panel5;
 		private System.Windows.Forms.Panel panel4;
 		private System.Windows.Forms.Panel panel3;
-		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.Label label11;
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.Label label9;
@@ -542,6 +577,7 @@
 		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.Label _lblUTCTime;
 		private System.Windows.Forms.Label _lblLocalTime;
+		private Bonsai.Chronology.Gui.Controls.TriadicDateControl _ctrlJulian;
 	}
 }
 

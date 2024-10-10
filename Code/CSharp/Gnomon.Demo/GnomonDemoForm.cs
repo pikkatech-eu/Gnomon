@@ -26,7 +26,8 @@ namespace Gnomon.Demo
 		{
 			InitializeComponent();
 
-			this._ctrlGregorian.Months = MonthNames.Names[Library.Enumerations.CalendarSystem.Gregorian];
+			this._ctrlGregorian.Months	= MonthNames.Names[Library.Enumerations.CalendarSystem.Gregorian];
+			this._ctrlJulian.Months		= MonthNames.Names[Library.Enumerations.CalendarSystem.Julian];
 
 			this._timerSecond.Interval	= 1000;
 			this._timerSecond.Tick		+= this.OnSecondTick;
@@ -54,7 +55,10 @@ namespace Gnomon.Demo
 
 			this._ctrlGregorian.TriadicDate		= gregorianDate;
 
-			
+			JulianDate julianDate				= new JulianDate();
+			julianDate.FromMoment(rataDie);
+
+			this._ctrlJulian.TriadicDate		= julianDate;
 		}
 	}
 }
