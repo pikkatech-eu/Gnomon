@@ -19,114 +19,49 @@ namespace Bonsai.Chronology.Gui.Controls
 {
 	public partial class TriadicDateControl : UserControl, ITriadicDateControl
 	{
-		private static readonly Dictionary<int, string[]> MONTH_NAMES = new Dictionary<int, string[]>()
-		{
-			{0, new string[] {	// Gregorian
-			"Unknown", 
-			"January",
-			"February",
-			"March",
-			"April",
-			"May",
-			"June",
-			"July",
-			"August",
-			"September",
-			"October",
-			"November",
-			"December" }},
-
-			{1, new string[] {	// Julian
-			"Unknown", 
-			"January",
-			"February",
-			"March",
-			"April",
-			"May",
-			"June",
-			"July",
-			"August",
-			"September",
-			"October",
-			"November",
-			"December" }},
-
-			{2, new string[] {	// Hebrew
-				"Unknown",
-				"Tishri",
-				"Cheshvan",
-				"Kislev",
-				"Tevet",
-				"Shevat",
-				"Adar",
-				"Adar Sheni",
-				"Nisan",
-				"Iyar",
-				"Sivan",
-				"Tammuz",
-				"Av",
-				"Elul"
-			}},
-
-			{3, new string[] {	// French
-				"Unknown",
-				"Vendemiaire",
-				"Brumaire",
-				"Frimaire",
-				"Nivose",
-				"Pluviose",
-				"Ventose",
-				"Germinal",
-				"Floreal",
-				"Prairial",
-				"Messidor",
-				"Thermidor",
-				"Fructidor",
-				"J.C."
-			}},
-
-			{4, new string[] {	// Islamic
-				"Unknown",
-				"Muharram",
-				"Safar",
-				"Rabi I",
-				"Rabi II",
-				"Jumada I",
-				"Jumada II",
-				"Rajab",
-				"Sha`ban",
-				"Ramadan",
-				"Shawwal",
-				"Dhu al-Qa`da",
-				"Dhu al-Hijja"
-			}},
-
-			{5, new string[] {	// Western Bahai
-				"unknown",
-				"Ayyám-i-Há",	// month # 0
-				"Bahá",			// month # 1
-				"Jalál",
-				"Jamál",  
-				"`Azamat",		
-				"Núr",  
-				"Rahmat",	  
-				"Kalimát",	    
-				"Kamál",	
-				"Asmá",
-				"`Izzat", 
-				"Mashíyyat",   
-				"`Ilm", 
-				"Qudrat",	  
-				"Qawl",			
-				"Masá'il",
-				"Sharaf", 
-				"Sultán",		
-				"Mulk",  
-				"`Alá"
-			}}
-		};
-
 		private static readonly Regex RX_YEAR = new Regex(@"^-?\d{1,4}$");
+
+		public string[] Months
+		{
+			get
+			{
+				List<string> result = new List<string>();
+
+				foreach (var item in this._cxMonth.Items)
+				{
+					result.Add(item.ToString());
+				}
+
+				return result.ToArray();
+			}
+
+			set
+			{
+				this._cxMonth.Items.Clear();
+				this._cxMonth.Items.AddRange(value);
+			}
+		}
+
+		public string[] Days
+		{
+			get
+			{
+				List<string> result = new List<string>();
+
+				foreach (var item in this._cxDay.Items)
+				{
+					result.Add(item.ToString());
+				}
+
+				return result.ToArray();
+			}
+
+			set
+			{
+				this._cxDay.Items.Clear();
+				this._cxDay.Items.AddRange(value);
+			}
+		}
 
 		public TriadicDateControl()
 		{
@@ -152,7 +87,7 @@ namespace Bonsai.Chronology.Gui.Controls
 				{
 					TriadicDate date	= new TriadicDate();
 					date.Year			= Int32.Parse(this._txYear.Text);
-					date.Month			= this._cxMonth.SelectedIndex;
+					date.Month			= this._cxMonth.SelectedIndex + 1;
 					date.Day			= this._cxDay.SelectedIndex;
 
 					return date;
@@ -168,7 +103,7 @@ namespace Bonsai.Chronology.Gui.Controls
 				if (value != null)
 				{
 					this._txYear.Text			= value.Year.ToString();
-					this._cxMonth.SelectedIndex	= value.Month;
+					this._cxMonth.SelectedIndex	= value.Month - 1;
 					this._cxDay.SelectedIndex	= (int)value.Day;
 				}
 			}

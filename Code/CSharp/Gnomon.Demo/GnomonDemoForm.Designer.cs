@@ -1,6 +1,6 @@
 ﻿namespace Gnomon.Demo
 {
-	partial class Form1
+	partial class GnomonDemoForm
 	{
 		/// <summary>
 		/// Required designer variable.

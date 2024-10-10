@@ -6,7 +6,6 @@
 * Version:      1.0                                                                *
 * Copyright:    pikkatech.eu (www.pikkatech.eu)                                    *
 ***********************************************************************************/
-// using Diebus.Tools;
 
 using Gnomon.Library.Tools;
 

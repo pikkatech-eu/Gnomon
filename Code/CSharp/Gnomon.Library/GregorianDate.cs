@@ -9,6 +9,7 @@
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Gnomon.Library.Enumerations;
 using Gnomon.Library.Tools;
 
 namespace Gnomon.Library
@@ -16,28 +17,27 @@ namespace Gnomon.Library
 	public class GregorianDate: TriadicDate
 	{
 		#region String constants
-		public static readonly string[] MONTHS_GEDCOM = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
+		// public static readonly string[] MONTHS_GEDCOM = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
 
-		public static readonly string[] MONTHS = {"January",  "February",  "March",  "April",  "May",  "June",  
-												  "July",  "August",  "September",  "October",  "November",  "December"};
+		//public static readonly string[] MONTHS = {"January",  "February",  "March",  "April",  "May",  "June",  
+		//										  "July",  "August",  "September",  "October",  "November",  "December"};
 
-		internal static readonly string GREGORIAN_GEDCOM_CALENDAR_NAME	= "GREGORIAN";
-		internal static readonly string JULIAN_GEDCOM_CALENDAR_NAME		= "JULIAN";
+		//internal static readonly string GREGORIAN_GEDCOM_CALENDAR_NAME	= "GREGORIAN";
+		//internal static readonly string JULIAN_GEDCOM_CALENDAR_NAME		= "JULIAN";
 		#endregion
 
 		#region Regex Constants
-		private static Regex _rxIso = new Regex(@"(?'year'\d{1,4})\s*-\s*(?'month'\d{1,2})\s*-\s*(?'day'\d{1,2})");
-		private static Regex _rxDDMMYYYY = new Regex(@"(?'day'\d{1,2})\s*\.\s*(?'month'\d{1,2})\s*\.\s*(?'year'\d{1,4})");		// "25.02.1996"
-		private static Regex _rxDDMMMYYYY = new Regex(@"(?'day'\d{1,2})\s*(?'month'[a-zA-Z]+)\s*(?'year'\d{1,4})");				// "25 February 1996"
-		private static Regex _rxUS = new Regex(@"(?'month'\d{1,2})\s*/\s*(?'day'\d{1,2})\s*/\s*(?'year'\d{1,4})");				// "02/25/1996"
-		private static Regex _rxGedcom = new Regex(@"(?'day'\d{1,2})\s*(?'month'[A-Z]{3})\s*(?'year'\d{1,4})");
+		private static readonly Regex _rxIso			= new Regex(@"(?'year'\d{1,4})\s*-\s*(?'month'\d{1,2})\s*-\s*(?'day'\d{1,2})");		// "1996-02-25"
+		private static readonly Regex _rx_dd_mm_yyyy	= new Regex(@"(?'day'\d{1,2})\s*\.\s*(?'month'\d{1,2})\s*\.\s*(?'year'\d{1,4})");	// "25.02.1996"
+		private static readonly Regex _rx_dd_MM_yyyy	= new Regex(@"(?'day'\d{1,2})\s*(?'month'\w+)\s*(?'year'\d{1,4})");					// "25 February 1996"
+		private static readonly Regex _rxUS				= new Regex(@"(?'month'\d{1,2})\s*/\s*(?'day'\d{1,2})\s*/\s*(?'year'\d{1,4})");		// "02/25/1996"
+
 		private static Regex[] _rxsDate = new Regex[]
-		{ 
+		{
 			_rxIso,
-			_rxDDMMYYYY,	// "25.02.1996"
-			_rxDDMMMYYYY,	// "25 February 1996"
-			_rxUS,			// "02/25/1996"
-			_rxGedcom
+			_rx_dd_mm_yyyy,
+			_rx_dd_MM_yyyy,
+			_rxUS
 		};
 		#endregion
 
@@ -146,12 +146,10 @@ namespace Gnomon.Library
 		#region String Representations
 		/// <summary>
 		/// Supported formats:
-		///		"ISO":			"1996-02-25"
-		///		"DD.MM.YYYY":	"25.02.1996"
-		///		"DD.MMMM.YYYY":	"25 February 1996"
-		///		"MM/DD/YYYY":	"02/25/1996"
-		///		"GED":			"25 FEB 1996"
-		///		"GEDF"			"GREGORIAN 25 FEB 1996"
+		///		"yyyy-mm-dd":	"1996-02-25"
+		///		"dd.mm.yyyy":	"25.02.1996"
+		///		"dd MM yyyy":	"25 February 1996"
+		///		"mm/dd/yyyy":	"02/25/1996"
 		///		"JD":			"JD:2450138.5"
 		///		"RD":			"RD:728714"
 		/// </summary>
@@ -164,57 +162,80 @@ namespace Gnomon.Library
 				return null;
 			}
 
-			return GetDateString(this, format, GREGORIAN_GEDCOM_CALENDAR_NAME);
-		}
-
-		/// <summary>
-		/// Common for Gregorian and Julian dates.
-		/// </summary>
-		/// <param name="date"></param>
-		/// <param name="format"></param>
-		/// <returns></returns>
-		internal static string GetDateString(TriadicDate date, string format, string gedcomCalendarName)
-		{
-			switch (format.ToUpper())
+			if (format.StartsWith("RD"))
 			{
-				case "DD.MM.YYYY":
-					return $"{(int)date.Day:00}.{date.Month}.{date.Year}";
+				// Rata Die
+				return $"RD {this.ToMoment()}";
+			}
+			else if (format.StartsWith("JD"))
+			{
+				// Julian days
+				return $"JD {this.JulianDays}";
+			}
+			else
+			{
+				string year = format.Contains("yyyy") ? this.Year.ToString() : "";
+				
+				string day = format.Contains("dd") ? this.Day.ToString() : "";
 
-				case "DD.MMMM.YYYY":
-					return $"{(int)date.Day:00}.{GregorianDate.MONTHS[date.Month - 1]}.{date.Year}";
+				string month = format.Contains("mm") ? this.Month.ToString() : "";
 
-				case "MM/DD/YYYY":
-					return $"{date.Month}/{(int)date.Day:00}/{date.Year}";
+				month = format.Contains("MM") ? MonthNames.Names[CalendarSystem.Gregorian][this.Month] : "";
 
-				case "GED":
-					return $"{(int)date.Day:00} {GregorianDate.MONTHS_GEDCOM[date.Month - 1]} {date.Year}";
+				string result = format.Replace("yyyy", year).Replace("mm", month).Replace("MM", month).Replace("dd", day);
 
-				case "GEDF":
-					return $"{gedcomCalendarName} {(int)date.Day:00} {GregorianDate.MONTHS_GEDCOM[date.Month - 1]} {date.Year}";
-
-				case "RD":
-					return $"RD:{date.RataDie}";
-
-				case "JD":
-					return $"ID:{date.JulianDays}";
-
-				default:
-					return $"{date.Year}-{date.Month:00}-{(int)date.Day:00}";
+				return result;
 			}
 		}
 
+		///// <summary>
+		///// Common for Gregorian and Julian dates.
+		///// </summary>
+		///// <param name="date"></param>
+		///// <param name="format"></param>
+		///// <returns></returns>
+		//internal static string GetDateString(TriadicDate date, string format, string gedcomCalendarName)
+		//{
+		//	switch (format.ToUpper())
+		//	{
+		//		case "DD.MM.YYYY":
+		//			return $"{(int)date.Day:00}.{date.Month}.{date.Year}";
+
+		//		case "DD.MMMM.YYYY":
+		//			return $"{(int)date.Day:00}.{GregorianDate.MONTHS[date.Month - 1]}.{date.Year}";
+
+		//		case "MM/DD/YYYY":
+		//			return $"{date.Month}/{(int)date.Day:00}/{date.Year}";
+
+		//		case "GED":
+		//			return $"{(int)date.Day:00} {GregorianDate.MONTHS_GEDCOM[date.Month - 1]} {date.Year}";
+
+		//		case "GEDF":
+		//			return $"{gedcomCalendarName} {(int)date.Day:00} {GregorianDate.MONTHS_GEDCOM[date.Month - 1]} {date.Year}";
+
+		//		case "RD":
+		//			return $"RD:{date.RataDie}";
+
+		//		case "JD":
+		//			return $"ID:{date.JulianDays}";
+
+		//		default:
+		//			return $"{date.Year}-{date.Month:00}-{(int)date.Day:00}";
+		//	}
+		//}
+
 		public override string ToString()
 		{
-			return this.ToString("ISO");
+			return this.ToString("dddd-mm-dd");
 		}
 
 		public static GregorianDate Parse(string source)
 		{
-			if (source.ToUpper().StartsWith("RD:"))
+			if (source.ToUpper().StartsWith("RD"))
 			{
 				try
 				{
-					double t = Double.Parse(source.Substring(3));
+					double t = Double.Parse(source.Substring(2));
 					GregorianDate gregorian = new GregorianDate();
 					gregorian.FromMoment(t);
 
@@ -227,11 +248,11 @@ namespace Gnomon.Library
 			}
 
 			// Try to parse as JD
-			if (source.ToUpper().StartsWith("JD:"))
+			if (source.ToUpper().StartsWith("JD"))
 			{
 				try
 				{
-					double t = Double.Parse(source.Substring(3));
+					double t = Double.Parse(source.Substring(2));
 					t += ChronoTools.JULIAN_DAY_EPOCH;
 
 					GregorianDate gregorian = new GregorianDate();
@@ -260,18 +281,10 @@ namespace Gnomon.Library
 				int day = Int32.Parse(dayString);
 				int month = 0;
 
-				if (regex == _rxDDMMMYYYY)
+				if (regex == _rx_dd_MM_yyyy)
 				{
-					var ii = MONTHS.Select((m, index) => new { Item = m, Index = index }).Where(pair => (pair.Item.ToUpper() == monthString.ToUpper())).Select(result => result.Index);					
-					if (ii.Count() > 0)
-					{
-						month = ii.First() + 1;
-					}
-				}
-				else if (regex == _rxGedcom)
-				{
-					var ii = MONTHS_GEDCOM.Select((m, index) => new { Item = m, Index = index }).Where(pair => (pair.Item.ToUpper() == monthString.ToUpper())).Select(result => result.Index);
-
+					string[] months = MonthNames.Names[CalendarSystem.Gregorian];
+					var ii = months.Select((m, index) => new { Item = m, Index = index }).Where(pair => (pair.Item.ToUpper() == monthString.ToUpper())).Select(result => result.Index);					
 					if (ii.Count() > 0)
 					{
 						month = ii.First() + 1;

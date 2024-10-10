@@ -20,14 +20,16 @@ using Gnomon.Library;
 
 namespace Gnomon.Demo
 {
-	public partial class Form1 : Form
+	public partial class GnomonDemoForm : Form
 	{
-		public Form1()
+		public GnomonDemoForm()
 		{
 			InitializeComponent();
 
-			this._timerSecond.Interval = 1000;
-			this._timerSecond.Tick += this.OnSecondTick;
+			this._ctrlGregorian.Months = MonthNames.Names[Library.Enumerations.CalendarSystem.Gregorian];
+
+			this._timerSecond.Interval	= 1000;
+			this._timerSecond.Tick		+= this.OnSecondTick;
 			this._timerSecond.Start();
 		}
 
